@@ -1,0 +1,15 @@
+<h1>Horas</h1>
+
+<%= form_for(@hora, as: :hora, url: principal_entrar_path(:hora)) do |f| %>
+<%= f.submit "Entrar" %>
+<% end %>
+<br>
+<%= form_for(@hora, as: :hora, url: principal_salir_path(:hora)) do |f| %>
+<%= f.submit "Salir" %>
+<% end %>
+<br>
+<table>
+<% @horas.each do |h| %>
+<tr><td><%= h.tipo %></td><td><%= h.hora.strftime('%d/%m/%Y %H:%M:%S') %></td></tr>
+<% end %>
+</table>
