@@ -32,6 +32,7 @@ class PrincipalController < ApplicationController
         @dias = 1
       elsif !dia_igual(ultimo_dia,h.hora)
         @dias = @dias+1
+        ultimo_dia = h.hora
       end
 
 
