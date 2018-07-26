@@ -1,30 +1,64 @@
 class PrincipalController < ApplicationController
+  
+  def dia_igual(fecha1,fecha2)
+    return fecha1.day==fecha2.day && fecha1.month==fecha2.month && fecha1.year==fecha2.year
+  end
+
+  def es_hoy(fecha)
+    hoy = DateTime.now
+    return fecha.day==hoy.day && fecha.month==hoy.month && fecha.year==hoy.year
+  end
+
   def index
   	@hora = Hora.new
 
     hoy = DateTime.now
 
     @suma = 0
+    @suma_hoy = 0
+
+    ultimo_dia=nil
+    @dias=0
 
     comienzo = nil
+    comienzo_hoy = nil
 
 
     horas = Hora.where("extract(month FROM hora)::int=#{hoy.month} AND extract(year FROM hora)::int=#{hoy.year}").order(hora: :asc)
     horas.each do |h|
+
+      if ultimo_dia == nil
+        ultimo_dia=h.hora
+        @dias = 1
+      elsif !dia_igual(ultimo_dia,h.hora)
+        @dias = @dias+1
+      end
+
+
       if (h.tipo==1)
         if ( comienzo == nil )
           comienzo = h.hora
+        end
+        if ( es_hoy(h.hora) && comienzo_hoy == nil )
+          comienzo_hoy = h.hora
         end
       elsif (h.tipo==2)
         if comienzo != nil 
           @suma = @suma + (h.hora-comienzo).to_i
           comienzo=nil
         end
+        if ( es_hoy(h.hora) && comienzo_hoy != nil )
+          @suma_hoy = @suma_hoy + (h.hora-comienzo_hoy).to_i
+          comienzo_hoy=nil
+        end
       end
     end
 
-    if ( comienzo != nil)
-        @suma = @suma + (hora:DateTime.now-3.hours-comienzo).to_i
+    if comienzo != nil
+        @suma = @suma + (DateTime.now-3.hours).to_i - (comienzo-0.hours).to_i
+    end
+    if comienzo_hoy != nil
+        @suma_hoy = @suma_hoy + (DateTime.now-3.hours).to_i - (comienzo_hoy-0.hours).to_i
     end
 
 

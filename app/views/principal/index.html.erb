@@ -1,5 +1,7 @@
 <div class="field">
-Horas: <%=  (@suma/60).to_i/60 %> horas<br>
+<%=  "Días: #{@dias}" %><br>
+<%=  "Total: #{(@suma/3600).to_i} horas #{((@suma%3600)/60).to_i} minutos" %><br>
+<%=  "Hoy: #{(@suma_hoy/3600).to_i} horas #{((@suma_hoy%3600)/60).to_i} minutos" %><br>
 <br>
 <%= form_for(@hora, as: :hora, url: principal_entrar_path(:hora)) do |f| %>
 <%= f.submit "Entrar" %>
