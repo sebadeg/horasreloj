@@ -13,7 +13,7 @@
 <br>
 <table border=1>
   <% @elements.each do |t| %>
-    <tr><td><%= t.tipo %></td><td><%= t.hora.strftime('%d/%m/%Y %H:%M:%S') %></td><td><%= link_to 'Editar', edit_principal_path(t) %></td><td><%= link_to 'Borrar', principal_path(t), method: :delete %></td></tr>
+    <tr><td><%= t.tipo == 1 ? "Entrada" : "Salida" %></td><td><%= t.hora.strftime('%d/%m/%Y %H:%M:%S') %></td><td><%= link_to 'Editar', edit_principal_path(t) %></td><td><%= link_to 'Borrar', principal_path(t), method: :delete %></td></tr>
   <% end %>
 </table>
 <br>

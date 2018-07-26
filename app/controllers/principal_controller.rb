@@ -95,8 +95,9 @@ class PrincipalController < ApplicationController
     end
   end
 
-  def show    
-    redirect_to root_path
+  def show
+    @element = Hora.find(params[:id]) rescue nil
+    result(pedidos_path,@element)
   end
 
   def new
@@ -112,7 +113,7 @@ class PrincipalController < ApplicationController
     if ( @element != nil ) && ( !@element.save )
       @element = nil
     end
-    result(principal_path,@element)
+    result(root_path,@element)
   end
 
   def edit
