@@ -5,6 +5,7 @@ class PrincipalController < ApplicationController
     hoy = DateTime.now
 
     @suma = 0
+
     comienzo = nil
 
 
@@ -21,6 +22,11 @@ class PrincipalController < ApplicationController
         end
       end
     end
+
+    if ( comienzo != nil)
+        @suma = @suma + (hora:DateTime.now-3.hours-comienzo).to_i
+    end
+
 
     @elements = Hora.where("extract(month FROM hora)::int=#{hoy.month} AND extract(year FROM hora)::int=#{hoy.year}").order(hora: :desc)
   end
