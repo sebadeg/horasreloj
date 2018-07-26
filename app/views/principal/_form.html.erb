@@ -1,0 +1,9 @@
+<div class="field">
+<%= form_for @element, as: :hora, url: locals[:url_data], method: locals[:method_data] do |f| %>
+  <table>
+    <tr><td>Tipo</td><td><%= f.text_field :tipo %></td></tr>
+    <tr><td>Hora</td><td><%= f.datetime_field :hora, step: 1 %></td></tr>
+    <tr><td align=center><%= f.submit "OK", size: 20 %></td></tr>
+  </table>
+<% end %>
+</div>

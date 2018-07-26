@@ -1,0 +1,25 @@
+  <% @elements.each do |t| %>
+
+  <br>
+  <table width=300p>
+    <tr><td><b><%= t.nombre %><b></td><td><%= link_to 'Editar', edit_pedido_path(t) %></td><td><%= link_to 'Borrar', pedido_path(t), method: :delete %></td></tr>
+    <tr><td> </td></tr>
+    <tr><td>Carne</td><td><%= t.carne ? "Si" : "No" %></td></tr>
+    <tr><td>Pollo</td><td><%= t.pollo ? "Si" : "No"%></td></tr>
+    <tr><td>Falafel</td><td><%= t.falafel ? "Si" : "No"%></td></tr>
+    <tr><td>Mayonesa</td><td><%= t.mayonesa ? "Si" : "No"%></td></tr>
+    <tr><td>Salsa de tomate</td><td><%= t.salsa ? "Si" : "No"%></td></tr>
+    <tr><td>Hummus</td><td><%= t.humus ? "Si" : "No"%></td></tr>
+    <tr><td>Lechuga</td><td><%= t.lechuga ? "Si" : "No"%></td></tr>
+    <tr><td>Tomate</td><td><%= t.tomate ? "Si" : "No"%></td></tr>
+    <tr><td>Cebolla</td><td><%= t.cebolla ? "Si" : "No"%></td></tr>
+    <tr><td>Repollo</td><td><%= t.repollo ? "Si" : "No"%></td></tr>
+    <tr><td>Zanahoria</td><td><%= t.zanahoria ? "Si" : "No"%></td></tr>
+    <tr><td>Aceitunas</td><td><%= t.aceitunas ? "Si" : "No"%></td></tr>
+    <tr><td>Picante</td><td><%= t.picante ? "Si" : "No"%></td></tr>
+    <tr><td>Papas pay</td><td><%= t.papaspay ? "Si" : "No"%></td></tr>
+  </table>
+  <br>
+  <% end %>
+
+  <%= button_to "Nuevo", new_pedido_path, :method => :get %>
