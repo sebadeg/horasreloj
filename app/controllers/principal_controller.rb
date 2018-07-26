@@ -101,7 +101,7 @@ class PrincipalController < ApplicationController
 
   def new
     p "New"
-    @hora = Hora.new()
+    @element = Hora.new()
   end
 
   def create
